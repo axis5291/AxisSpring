@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1d860ed7-baef-410c-897d-9364bfdb446a" name="Changes" comment="1&#10;2&#10;3&#10;4" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "musicmanaxis"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/musicmanaxis/Axis-Spring.git",
+    "accountId": "db6681d1-d985-4e56-8cd2-60ae03834718"
+  }
+}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2jT1aF7QKPbL4Daz1ENi719GPVG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.AxisSpringApplication.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.ProductControllerTest.executor": "Run",
+    "JUnit.ProductServiceImplTest.executor": "Run",
+    "JUnit.ProductServiceImplTest.getProductTest.executor": "Run",
+    "JUnit.ProductServiceImplTest.saveProductTest.executor": "Run",
+    "JUnit.TestLifeCycle.executor": "Run",
+    "Maven.Axis-Spring [site].executor": "Run",
+    "Maven.Axis-Spring [test].executor": "Run",
+    "Maven.Axis-Spring [verify].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/axis/MacBookStore/ComStudy/Spring/Axis-Spring",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.47356322",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Axis.Axis_Spring.data.entity" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ProductServiceImplTest">
+    <configuration name="AxisSpringApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Axis.Axis_Spring.AxisSpringApplication" />
+      <module name="Axis-Spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Axis.Axis_Spring.data.dto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Axis-Spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Axis.Axis_Spring.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Axis.Axis_Spring.controller" />
+      <option name="MAIN_CLASS_NAME" value="Axis.Axis_Spring.controller.ProductControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Axis-Spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Axis.Axis_Spring.service.Impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Axis.Axis_Spring.service.Impl" />
+      <option name="MAIN_CLASS_NAME" value="Axis.Axis_Spring.service.Impl.ProductServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceImplTest.getProductTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Axis-Spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Axis.Axis_Spring.service.Impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Axis.Axis_Spring.service.Impl" />
+      <option name="MAIN_CLASS_NAME" value="Axis.Axis_Spring.service.Impl.ProductServiceImplTest" />
+      <option name="METHOD_NAME" value="getProductTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceImplTest.saveProductTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Axis-Spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Axis.Axis_Spring.service.Impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Axis.Axis_Spring.service.Impl" />
+      <option name="MAIN_CLASS_NAME" value="Axis.Axis_Spring.service.Impl.ProductServiceImplTest" />
+      <option name="METHOD_NAME" value="saveProductTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ProductServiceImplTest" />
+        <item itemvalue="JUnit.ProductServiceImplTest.saveProductTest" />
+        <item itemvalue="JUnit.ProductServiceImplTest.getProductTest" />
+        <item itemvalue="Application.AxisSpringApplication" />
+        <item itemvalue="JUnit.ProductControllerTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d860ed7-baef-410c-897d-9364bfdb446a" name="Changes" comment="" />
+      <created>1721396314697</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1721396314697</updated>
+    </task>
+    <task id="LOCAL-00001" summary="1">
+      <option name="closed" value="true" />
+      <created>1721397668943</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1721397668943</updated>
+    </task>
+    <task id="LOCAL-00002" summary="1&#10;2">
+      <option name="closed" value="true" />
+      <created>1721423181620</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721423181620</updated>
+    </task>
+    <task id="LOCAL-00003" summary="1&#10;2&#10;3">
+      <option name="closed" value="true" />
+      <created>1721924827657</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721924827657</updated>
+    </task>
+    <task id="LOCAL-00004" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1721940422057</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1721940422057</updated>
+    </task>
+    <task id="LOCAL-00005" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1721940457636</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721940457636</updated>
+    </task>
+    <task id="LOCAL-00006" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1721947833668</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721947833668</updated>
+    </task>
+    <task id="LOCAL-00007" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1723989203187</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723989203187</updated>
+    </task>
+    <task id="LOCAL-00008" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724014172841</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1724014172841</updated>
+    </task>
+    <task id="LOCAL-00009" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724015859860</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1724015859860</updated>
+    </task>
+    <task id="LOCAL-00010" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724245181172</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1724245181172</updated>
+    </task>
+    <task id="LOCAL-00011" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724257570544</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1724257570544</updated>
+    </task>
+    <task id="LOCAL-00012" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724496199073</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1724496199073</updated>
+    </task>
+    <task id="LOCAL-00013" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724496468938</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1724496468938</updated>
+    </task>
+    <task id="LOCAL-00014" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724503083542</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1724503083542</updated>
+    </task>
+    <task id="LOCAL-00015" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724762021140</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1724762021140</updated>
+    </task>
+    <task id="LOCAL-00016" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724765576970</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1724765576970</updated>
+    </task>
+    <task id="LOCAL-00017" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724773339691</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1724773339691</updated>
+    </task>
+    <task id="LOCAL-00018" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724773467488</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1724773467488</updated>
+    </task>
+    <task id="LOCAL-00019" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724800139565</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1724800139565</updated>
+    </task>
+    <task id="LOCAL-00020" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1724800893286</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1724800893286</updated>
+    </task>
+    <task id="LOCAL-00021" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1725553590372</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1725553590372</updated>
+    </task>
+    <task id="LOCAL-00022" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1725553609798</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1725553609798</updated>
+    </task>
+    <task id="LOCAL-00023" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1725802068853</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1725802068853</updated>
+    </task>
+    <task id="LOCAL-00024" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1725803536321</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1725803536322</updated>
+    </task>
+    <task id="LOCAL-00025" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1725805383144</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1725805383144</updated>
+    </task>
+    <task id="LOCAL-00026" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1725812762007</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1725812762007</updated>
+    </task>
+    <task id="LOCAL-00027" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1725829536271</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1725829536271</updated>
+    </task>
+    <task id="LOCAL-00028" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1725830229297</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1725830229297</updated>
+    </task>
+    <task id="LOCAL-00029" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1725830529703</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1725830529703</updated>
+    </task>
+    <task id="LOCAL-00030" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1726070281093</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1726070281093</updated>
+    </task>
+    <task id="LOCAL-00031" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1726071394184</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1726071394184</updated>
+    </task>
+    <task id="LOCAL-00032" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1726072112287</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1726072112287</updated>
+    </task>
+    <task id="LOCAL-00033" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1726073549283</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1726073549283</updated>
+    </task>
+    <task id="LOCAL-00034" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1726073733836</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1726073733836</updated>
+    </task>
+    <task id="LOCAL-00035" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1726349217263</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1726349217263</updated>
+    </task>
+    <task id="LOCAL-00036" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1726844073348</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1726844073348</updated>
+    </task>
+    <task id="LOCAL-00037" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1726866018764</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1726866018765</updated>
+    </task>
+    <task id="LOCAL-00038" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1727122236174</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1727122236174</updated>
+    </task>
+    <task id="LOCAL-00039" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1727124374163</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1727124374163</updated>
+    </task>
+    <task id="LOCAL-00040" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1727652410939</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1727652410939</updated>
+    </task>
+    <task id="LOCAL-00041" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1727652922000</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1727652922000</updated>
+    </task>
+    <task id="LOCAL-00042" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1727901216986</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1727901216986</updated>
+    </task>
+    <task id="LOCAL-00043" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1727910105832</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1727910105832</updated>
+    </task>
+    <task id="LOCAL-00044" summary="1&#10;2&#10;3&#10;4">
+      <option name="closed" value="true" />
+      <created>1727910690059</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1727910690059</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1" />
+    <MESSAGE value="1&#10;2" />
+    <MESSAGE value="1&#10;2&#10;3" />
+    <MESSAGE value="1&#10;2&#10;3&#10;4" />
+    <option name="LAST_COMMIT_MESSAGE" value="1&#10;2&#10;3&#10;4" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
