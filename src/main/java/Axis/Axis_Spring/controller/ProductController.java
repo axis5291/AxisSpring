@@ -30,16 +30,15 @@ public class ProductController {
         return productService.getProduct(productId);
     }
 
-    //http://localhost:8080/api/v1/product-api/product    post방식으로 실행할것
+    //http://localhost:8080/api/v1/product-api/product    post방식으로 postman으로 테스트 아래 제이슨테이터 삽입
     /* 제이슨 내용
     {
         "productId":"Axis-Book",
         "productName":"Axis-Book-1",
         "productPrice":"5000",
         "productStock":"5"
-    }
-    */
-    //Post방식은 데이터를 집어는 넣는 방식을 쓰는 것..
+    }   */
+    //아래 메서드는 "POST로 받은 JSON을 메모리에 DTO로 담고, 필요한 값 꺼내서 서비스 계층(productService)으로 넘겨 디비에 저장하는 방식."
     @PostMapping(value = "/product")
     public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){
    //@Valid 유효성 검사를 하는 항목인데, ProductDto에서의 필드값에 유효하지 않은 값이 넘어가면 에러가 발생하게 설정하는것
@@ -53,9 +52,6 @@ public class ProductController {
         int productStock=productDto.getProductStock();
 
         ProductDto response=productService.saveProduct(productId, productName, productPrice, productStock);
-
-
-
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }

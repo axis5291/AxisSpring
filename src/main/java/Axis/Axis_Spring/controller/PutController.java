@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
-/*Put API
-해당 리소스가 있으면 갱신하고, 없으면 새로 생성한다. 업데이트를 위한 메서드
-기본적인 동작 방식은 Post API와 동일 */
+/*Put API:해당 리소스가 있으면 갱신하고, 없으면 새로 생성한다. 업데이트를 위한 메서드, 기본적인 동작 방식은 Post API와 동일 */
 @RestController
 @RequestMapping("/api/v1/put-api")
 public class PutController {
@@ -39,8 +37,7 @@ public class PutController {
     }
     //http://localhost:8080/api/v1/put-api/member1
 
-    //2.Json형식 그대로 보여줌..일반적으로 클라이언트쪽에서도 제이슨 형식을 사용하므로
-    // 이방법을 더 선호
+    //2.Json형식 그대로 보여줌..일반적으로 클라이언트쪽에서도 제이슨 형식을 사용하므로  이방법을 더 선호
     @PutMapping(value = "/member2")
     public MemberDTO postMemberDto2(@RequestBody MemberDTO memberDTO){
         return memberDTO;

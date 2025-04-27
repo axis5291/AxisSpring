@@ -2,7 +2,6 @@ package Axis.Axis_Spring.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,8 +32,8 @@ public class PostController {
    */
 /*
   @RequestBody 어노테이션은 HTTP 요청의 본문(body)에 포함된   JSON, XML 등  기타 포맷의 데이터를 Java 객체로 변환하는 역할을 합니다.
-  이 어노테이션을 사용하면 클라이언트가 요청 본문에 포함한 데이터를 접근할 수 있다.
-*/
+   1. @RequestBody로 받은 JSON 데이터를 Map으로 변환하여 사용
+       Map<String, Object> 형태로 받아서  key와 value를 직접 꺼내서 처리함,   어떤 데이터가 들어올지 모를 때 유용  */
 
     @PostMapping(value = "/member")     // http://localhost:8080/api/v1/post-api/member
     public String postMember(@RequestBody Map<String, Object> postData){  //value값이 어떤게 들어올지 몰라서 Object로 설정
@@ -47,16 +46,11 @@ public class PostController {
         return sb.toString();
     }
   
-
-
-/*  DTO를 이용하는 방법
-    Get방식과는 다르게 Post방식에서는
-    '@RequestBody'->이것을 꼭 명시해준다.*/
-    @PostMapping(value = "/member2")
+/* 2. @RequestBody로 받은 JSON 데이터를 DTO 객체로 변환하여 사용 ->실무에서는 이게 더 많이 사용
+      미리 정의된 MemberDTO 클래스가 필요, 필드 이름과 JSON key가 일치해야 함,  타입 안정성과 구조화된 데이터 처리에 유리 */
+    @PostMapping(value = "/member2")         // http://localhost:8080/api/v1/post-api/member2
     public String postMember2(@RequestBody MemberDTO memberDTO){
-
-        return memberDTO.toString();
+        return memberDTO.toString();   //MemberDTO에 @toString() 어노테이션이 붙어있어야 함
     }
-
-    // http://localhost:8080/api/v1/post-api/member2
+   
 }
