@@ -20,6 +20,23 @@ public class ProductServiceImpl implements ProductService {
        this.productDataHandler=productDataHandler;
    }
 
+   @Override
+   public ProductDto getProduct(String productId) {
+       Product product =productDataHandler.getProductEntity(productId);
+       ProductDto productDto=new ProductDto(product.getProductId(), product.getProductName(),
+                                            product.getProductPrice(), product.getProductStock());
+       return productDto;
+   }
+
+   @Override
+   public ProductDto deleteProduct(String productId) {
+        Product product = productDataHandler.deleteProductEntity(productId);
+        ProductDto productDto=new ProductDto(product.getProductId(), product.getProductName(),
+        product.getProductPrice(), product.getProductStock());
+        return productDto;
+      
+   }
+   
     @Override
     public ProductDto saveProduct(String productId, String productName, int productPrice, int productStock) {
         Product product =productDataHandler.saveProductEntity(productId, productName, productPrice, productStock);
@@ -30,11 +47,5 @@ public class ProductServiceImpl implements ProductService {
         return productDto;
     }
 
-    @Override
-    public ProductDto getProduct(String productId) {
-        Product product =productDataHandler.getProductEntity(productId);
-        ProductDto productDto=new ProductDto(product.getProductId(), product.getProductName(),
-                                             product.getProductPrice(), product.getProductStock());
-        return productDto;
-    }
+   
 }

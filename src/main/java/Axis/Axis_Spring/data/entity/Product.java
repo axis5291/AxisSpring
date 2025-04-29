@@ -10,9 +10,9 @@ import  Axis.Axis_Spring.data.dto.ProductDto;
 @Entity
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name="product")  //ProductEntity를 기반으로 디비에 테이블을 자동으로 생성해주는 옵션
 // 이때 테이블의 이름을 name="product"으로 지정
 

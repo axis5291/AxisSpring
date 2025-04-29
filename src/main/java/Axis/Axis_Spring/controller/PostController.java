@@ -2,6 +2,7 @@ package Axis.Axis_Spring.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,7 +47,7 @@ public class PostController {
         return sb.toString();
     }
   
-/* 2. @RequestBody로 받은 JSON 데이터를 DTO 객체로 변환하여 사용 ->실무에서는 이게 더 많이 사용
+/* 2. @RequestBody로 받은 JSON 데이터를 DTO 객체로 변환하여 사용 -> ***실무에서는 이게 더 많이 사용
       미리 정의된 MemberDTO 클래스가 필요, 필드 이름과 JSON key가 일치해야 함,  타입 안정성과 구조화된 데이터 처리에 유리 */
     @PostMapping(value = "/member2")         // http://localhost:8080/api/v1/post-api/member2
     public String postMember2(@RequestBody MemberDTO memberDTO){

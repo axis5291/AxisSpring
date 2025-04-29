@@ -17,14 +17,21 @@ public class ProductDataHandlerImpl implements ProductDataHandler {
         this.productDAO=productDAO;
     }
 
+    @Override  //DB에서 엔티티를 불러오는 단계
+    public Product getProductEntity(String productId) {
+       return productDAO.getProduct((productId));
+    }
+
+    @Override
+    public Product deleteProductEntity(String productId) {
+        return productDAO.deleteProduct(productId);
+    }
+
     @Override  //DB에 저장하는 작업
     public Product saveProductEntity(String productId, String productName, int productPrice, int productStock) {
        Product product =new Product(productId, productName, productPrice, productStock);
        return  productDAO.saveProduct(product);
      }
 
-    @Override  //DB에서 엔티티를 불러오는 단계
-    public Product getProductEntity(String productId) {
-       return productDAO.getProduct((productId));
-    }
+   
 }

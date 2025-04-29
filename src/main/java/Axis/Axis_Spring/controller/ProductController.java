@@ -3,6 +3,7 @@ package Axis.Axis_Spring.controller;
 import Axis.Axis_Spring.common.Constants;
 import Axis.Axis_Spring.common.exception.AxisSpringException;
 import Axis.Axis_Spring.data.dto.ProductDto;
+import Axis.Axis_Spring.data.entity.Product;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +24,18 @@ public class ProductController {
 
     //Get방식은 데이터를 조회할 때 쓰는 방식임으로 여기선 id를 통해 데이터를 가져오는 것을 구현한 것이다.
     //http://localhost:8080/api/v1/product-api/product/{productId}
-    //http://localhost:8080/api/v1/product-api/product/Axis-Book 이걸로 Get방식으로 해보자
+    //http://localhost:8080/api/v1/product-api/product/Axis-Book1 이걸로 Get방식으로 해보자
     //Id로 조회하는 방식
     @GetMapping(value = "/product/{productId}")
     public ProductDto getProduct(@PathVariable String productId){
         return productService.getProduct(productId);
     }
+
+     //http://localhost:8080/api/v1/product-api/productDelete/{productId}
+     @DeleteMapping(value = "/productDelete/{productId}")
+     public ProductDto deleteProduct(@PathVariable String productId){
+            return  productService.deleteProduct(productId); //삭제 후 다시 조회해보면 null값이 나와야함
+     }
 
     //http://localhost:8080/api/v1/product-api/product    post방식으로 postman으로 테스트 아래 제이슨테이터 삽입
     /* 제이슨 내용
@@ -56,11 +63,7 @@ public class ProductController {
 
     }
 
-    //http://localhost:8080/api/v1/product-api/product/{productId}
-    @DeleteMapping(value = "/product/{productId}")
-    public ProductDto deleteProduct(@PathVariable String productId){
-        return null;
-    }
+   
 
     @PostMapping(value = "/product/exception")
     public void exceptionTest() throws AxisSpringException{

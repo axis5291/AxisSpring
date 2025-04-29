@@ -51,7 +51,7 @@ public class GetController {
     //@RequestParam :Get 형식의 요청에서 쿼리 문자열을 전달하기 위해 사용하는 방법  '?'를 기준으로 우측에 {키}={값}의 형태로 전달되며, 복수 형태로 전달할 경우 &를 사용함
    
     @GetMapping(value = "request2")  //이방법은 입력것이 url에 무작위로 들어올때 쓰는 방법
-    public String getRequestParam2(@RequestParam Map<String, String> param){
+    public String getRequestParam2(@RequestParam Map<String, String> param){   //(@RequestParam Map<String, String>->url에 api?name=jongho&age=25 형태가 들어온다는 가정
         StringBuilder sb = new StringBuilder();
        //param.entrySet().forEach(map -> {sb.append(map.getKey() + ":" + map.getValue() + "\n"); });  set으로 받아서 반복문을 돌려서 출력하는 방법
          param.forEach((key, value) -> {  //Map 자체에 바로 forEach를 쓰는 방법: map을 받아서 key와 value를 각각 받아서 반복문을 돌려서 출력하는 방법, 자바8부터 가능
