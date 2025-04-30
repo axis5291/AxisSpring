@@ -43,10 +43,10 @@ public class ProductServiceImpl implements ProductService {
    }
    
     @Override
-    public ProductDto saveProduct(ProductEntity productEntity) {
-        ProductEntity productEntitySaved =productDataHandler.saveProductEntity(productEntity);
-        ProductDto productDto=productEntitySaved.toDto(); //저장된 ProductEntity를 ProductDto로 변환
-        return productDto;
+    public ProductDto saveProduct(ProductDto productDto) {
+        ProductEntity productEntitySaved =productDataHandler.saveProductEntity(productDto.toEntity()); //ProductDto를 ProductEntity로 변환하여 저장
+        ProductDto productDtoSaved=productEntitySaved.toDto(); //저장된 ProductEntity를 ProductDto로 변환
+        return productDtoSaved;
     }
 
 }

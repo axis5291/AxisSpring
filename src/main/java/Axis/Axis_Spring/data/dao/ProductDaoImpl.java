@@ -43,7 +43,6 @@ public  class ProductDaoImpl implements ProductDao {
 
         // 3. 삭제 전에 조회한 product 객체를 사용
         return productEntity;
-        
     }
 
     @Override

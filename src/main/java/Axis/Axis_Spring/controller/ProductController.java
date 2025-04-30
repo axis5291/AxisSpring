@@ -49,7 +49,7 @@ public class ProductController {
     
     @PostMapping(value = "/product")  //상품하나를 등록하는 메서드, 하단 아래 제이슨 데이터를 넘겨준다. 하단은 예전방식
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){   
-        ProductDto response=productService.saveProduct(productDto.toEntity());
+        ProductDto response=productService.saveProduct(productDto);
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }

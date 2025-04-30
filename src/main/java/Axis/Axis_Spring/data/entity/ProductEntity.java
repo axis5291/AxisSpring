@@ -1,6 +1,11 @@
 package Axis.Axis_Spring.data.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import  Axis.Axis_Spring.data.dto.ProductDto;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -23,10 +28,13 @@ import lombok.Setter;
 public class ProductEntity {
 
     @Id //DB의 프라이머리 키와 동일한 의미이고 productId에 속성을 부여하였다.
-    String productId;
-    String productName;
-    Integer productPrice;
-    Integer productStock;
+    private String productId;
+    private String productName;
+    private Integer productPrice;
+    private Integer productStock;
+    @Column(name = "created_at")
+    @CreationTimestamp  // 저장 시 자동 입력
+    private LocalDateTime produSavedDate;
 
     public ProductDto toDto(){
         return ProductDto.builder()
