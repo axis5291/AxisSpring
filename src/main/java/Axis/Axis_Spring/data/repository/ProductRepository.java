@@ -1,8 +1,9 @@
 package Axis.Axis_Spring.data.repository;
-import Axis.Axis_Spring.data.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface   ProductRepository extends JpaRepository <Product, String> {
+import Axis.Axis_Spring.data.entity.ProductEntity;
+
+public interface   ProductRepository extends JpaRepository <ProductEntity, String> {
 
 }
 

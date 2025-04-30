@@ -1,4 +1,4 @@
-package Axis.Axis_Spring.service.impl;
+package Axis.Axis_Spring.service;
 
 import Axis.Axis_Spring.data.dto.ProductDto;
 

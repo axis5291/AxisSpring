@@ -1,12 +1,13 @@
 package Axis.Axis_Spring.data.dao;
 
-import Axis.Axis_Spring.data.entity.Product;
 
-public interface ProductDAO {
+import Axis.Axis_Spring.data.entity.ProductEntity;
 
-    Product getProduct(String productId);
-    Product deleteProduct(String productId);
-    Product saveProduct(Product product);
+public interface ProductDao {
+
+    ProductEntity getProduct(String productId);
+    ProductEntity deleteProduct(String productId);
+    ProductEntity saveProduct(ProductEntity product);
    
 
 }

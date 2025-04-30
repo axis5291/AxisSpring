@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import Axis.Axis_Spring.data.dto.MemberDTO;
+import Axis.Axis_Spring.data.dto.MemberDto;
 
 /*@RestController:@Controller와 @ResponseBody가 합쳐진 어노테이션, 반환하려는 주류는 JSON 형태의 객체 데이터다.
 REST API를 개발할 때 주로 사용하며 마찬가지로 ResponseEntity로 감싸서 주로 반환한다.*/
@@ -67,7 +67,7 @@ public class GetController {
 
     //키와 값이 정해져 있지만 받아야할 파라미터가 많을 경우 DTO 객체를 이용하는 방식
     @GetMapping(value = "request3")     //  http://localhost:8080/api/v1/get-api/request3?name=미현&email=엑시스@naver.com&group=하하하&sex=여자
-    public String getRequestParam3(MemberDTO memberDTO){
+    public String getRequestParam3(MemberDto memberDTO){
        // return memberDTO.getName()+""+memberDTO.getEmail()+""+memberDTO.getGroup();  이런식으로 호출할수도 있다.
         return memberDTO.toString();  //MembrDTO의 @toString이 있어서 가능   
     }

@@ -1,13 +1,14 @@
 package Axis.Axis_Spring.controller;
 
-import Axis.Axis_Spring.data.dto.MemberDTO;
-import Axis.Axis_Spring.service.impl.RestTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import Axis.Axis_Spring.data.dto.MemberDto;
+import Axis.Axis_Spring.service.RestTemplateService;
 
 //RestTemplateServiceImpl와 메서드가 각각 5개씩 매칭이 되어 있다.
 //컨트롤러쪽에서는 RestTemplateServiceImpl의 메서드만 호출하는 구조이다
@@ -39,12 +40,12 @@ public class RestTemlpateController {
     }
 
     @PostMapping(value = "/dto")
-    public ResponseEntity<MemberDTO> postDto() {
+    public ResponseEntity<MemberDto> postDto() {
         return restTemplateService.postDto();
     }
 
     @PostMapping(value = "/add-header")
-    public ResponseEntity<MemberDTO> addHeader() {
+    public ResponseEntity<MemberDto> addHeader() {
         return restTemplateService.addHeader();
     }
 

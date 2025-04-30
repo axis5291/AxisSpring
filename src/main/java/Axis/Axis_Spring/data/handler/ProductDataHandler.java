@@ -1,11 +1,9 @@
 package Axis.Axis_Spring.data.handler;
-
-import Axis.Axis_Spring.data.entity.Product;
-
+import Axis.Axis_Spring.data.entity.ProductEntity;
 public interface ProductDataHandler {
 
-    public Product getProductEntity(String productId) ;
-    public Product deleteProductEntity(String productId) ;
-    public Product saveProductEntity(String productId, String productName, int productPrice, int productStock);
+    public ProductEntity getProductEntity(String productId) ;
+    public ProductEntity deleteProductEntity(String productId) ;
+    public ProductEntity saveProductEntity(String productId, String productName, int productPrice, int productStock);
     
 }

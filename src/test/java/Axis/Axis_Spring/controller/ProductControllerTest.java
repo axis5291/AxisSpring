@@ -1,7 +1,8 @@
 package Axis.Axis_Spring.controller;
 
 import Axis.Axis_Spring.data.dto.ProductDto;
-import Axis.Axis_Spring.service.impl.ProductService;
+import Axis.Axis_Spring.service.ProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
