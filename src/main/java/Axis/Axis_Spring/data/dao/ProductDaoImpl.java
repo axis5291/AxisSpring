@@ -20,11 +20,16 @@ public  class ProductDaoImpl implements ProductDao {
         this.productRepository=productRepository;
     }
 
+
     @Override
-    public ProductEntity getProduct(String productId) {
-        ProductEntity productEntity =productRepository.getById(productId); //productId를 넘겨주고 productEntity를 받아옴, getById() ->ProductRepository에는 없지만 조상인터페이스에 있음
-        return productEntity;
+    public ProductEntity getProduct(String productId) {  //하단 예전방식 참조
+        return productRepository.findById(productId)   //findById는 Optional을 넘겨주기 때문에 orElseThrow를 사용하여 예외처리를 해줘야 한다.
+                .orElseThrow(() -> new RuntimeException("찾으시는 상품이 없습니다."));
     }
+
+//findById는 Optional로 값을 반환하므로, 반드시 Optional의 메서드(isPresent(), orElse(), orElseThrow() 등)를 통해 값을 안전하게 처리해야 합니다.
+//실무에서는 orElseThrow를 많이 사용한다. 이 메서드는 Optional이 비어있을 때 예외를 던지도록 해준다.
+
 
     @Override
     public ProductEntity deleteProduct(String productId) {
@@ -41,14 +46,17 @@ public  class ProductDaoImpl implements ProductDao {
         
     }
 
-
     @Override
     public ProductEntity saveProduct(ProductEntity productEntity){
         productRepository.save(productEntity);  //productEntity를 넘겨주면 DB에 저장, save()는 ProductRepository에는 없지만 조상인터페이스에 있음
         return productEntity;
     }
 
-  
-
-
 }
+
+
+    // @Override   예전방식
+    // public ProductEntity getProduct(String productId) {
+    //     ProductEntity productEntity =productRepository.getById(productId); //productId를 넘겨주고 productEntity를 받아옴, getById() ->ProductRepository에는 없지만 조상인터페이스에 있음
+    //     return productEntity;
+    // }

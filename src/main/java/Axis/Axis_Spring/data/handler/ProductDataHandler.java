@@ -4,6 +4,6 @@ public interface ProductDataHandler {
 
     public ProductEntity getProductEntity(String productId) ;
     public ProductEntity deleteProductEntity(String productId) ;
-    public ProductEntity saveProductEntity(String productId, String productName, int productPrice, int productStock);
+    public ProductEntity saveProductEntity(ProductEntity productEntity) ;
     
 }

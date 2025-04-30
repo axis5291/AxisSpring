@@ -15,7 +15,6 @@ import Axis.Axis_Spring.common.Constants;
 import Axis.Axis_Spring.common.exception.AxisSpringException;
 import Axis.Axis_Spring.data.dto.ProductDto;
 import Axis.Axis_Spring.service.ProductService;
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/product-api")
@@ -37,34 +36,20 @@ public class ProductController {
         return productService.getProduct(productId);
     }
 
+    // @GetMapping(value = "/productAll")  //http://localhost:8080/api/v1/product-api/productAA
+    // public ResponseEntity<List<ProductEntity> getProductAll(){
+    //     return ResponseEntity.status(HttpStatus.OK).body(productService.getProductAll());
+    // }
+
      //http://localhost:8080/api/v1/product-api/productDelete/{productId}
      @DeleteMapping(value = "/productDelete/{productId}")
      public ProductDto deleteProduct(@PathVariable String productId){
             return  productService.deleteProduct(productId); //삭제 후 다시 조회해보면 null값이 나와야함
      }
-
-    //http://localhost:8080/api/v1/product-api/product    post방식으로 postman으로 테스트 아래 제이슨테이터 삽입
-    /* 제이슨 내용
-    {
-        "productId":"Axis-Book",
-        "productName":"Axis-Book-1",
-        "productPrice":"5000",
-        "productStock":"5"
-    }   */
-    //아래 메서드는 "POST로 받은 JSON을 메모리에 DTO로 담고, 필요한 값 꺼내서 서비스 계층(productService)으로 넘겨 디비에 저장하는 방식."
-    @PostMapping(value = "/product")
-    public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){
-   //@Valid 유효성 검사를 하는 항목인데, ProductDto에서의 필드값에 유효하지 않은 값이 넘어가면 에러가 발생하게 설정하는것
-        //상품가격을 -500등으로 넘기면 에러가 발생하게 설정
-        System.out.println("getProductId를 찍어보자="+productDto.getProductId());
-        String productId=productDto.getProductId();
-        //http://localhost:8080/api/v1/product-api/product 페이지에서 제이슨 형태의 데이터를 메모리에 떠있는 productDto객체에 넘긴다.
-        //이미 메모리에 떠있는 productDto객체의 각필드값의 제이슨 데이터가 넘어간것을 다시 가져온다.
-        String productName=productDto.getProductName();
-        int productPrice=productDto.getProductPrice();
-        int productStock=productDto.getProductStock();
-
-        ProductDto response=productService.saveProduct(productId, productName, productPrice, productStock);
+    
+    @PostMapping(value = "/product")  //상품하나를 등록하는 메서드, 하단 아래 제이슨 데이터를 넘겨준다. 하단은 예전방식
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){   
+        ProductDto response=productService.saveProduct(productDto.toEntity());
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
@@ -74,3 +59,33 @@ public class ProductController {
         throw  new AxisSpringException(Constants.ExceptionClass.PRODUCT, HttpStatus.FORBIDDEN, " 접근이 금지되었습니다.");
    }
 }
+
+//     @PostMapping(value = "/product")  //상품하나를 등록하는 메서드, 하단 아래 제이슨 데이터를 넘겨준다.(예전방식)
+//     public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){   
+//          
+//         String productId=productDto.getProductId();
+//         String productName=productDto.getProductName();
+//         int productPrice=productDto.getProductPrice();
+//         int productStock=productDto.getProductStock();
+
+//         ProductDto response=productService.saveProduct(productId, productName, productPrice, productStock);
+//         return ResponseEntity.status(HttpStatus.OK).body(response);
+
+//     }
+
+//@Valid 유효성 검사를 하는 항목인데, ProductDto에서의 필드값에 유효하지 않은 값이 넘어가면 에러가 발생하게 설정하는것, 상품가격을 -500등으로 넘기면 에러가 발생하게 설정
+  //http://localhost:8080/api/v1/product-api/product 페이지에서 제이슨 형태의 데이터를 메모리에 떠있는 productDto객체에 넘긴다.
+
+
+    //http://localhost:8080/api/v1/product-api/product    post방식으로 postman으로 테스트 아래 제이슨테이터 삽입
+
+    /* 상품등록 테스트에 쓸 제이슨 데이터
+    {
+        "productId":"Axis-Book",
+        "productName":"Axis-Book-1",
+        "productPrice":"5000",
+        "productStock":"5"
+    }   */
+ 
+
+//        
