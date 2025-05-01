@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Spring Boot App",
+        "request": "launch",
+        "mainClass": "Axis.Axis_Spring.AxisSpringApplication",
+        "vmArgs": "-Dfile.encoding=UTF-8"
+      }
+    ]
+  }
+  
