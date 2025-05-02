@@ -1,5 +1,7 @@
 package Axis.Axis_Spring.data.handler;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +12,8 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class ProductDataHandlerImpl implements ProductDataHandler {
-    ProductDao productDao;
 
+    private final ProductDao productDao;
     @Autowired
     public ProductDataHandlerImpl(ProductDao productDao){
         this.productDao=productDao;
@@ -20,6 +22,11 @@ public class ProductDataHandlerImpl implements ProductDataHandler {
     @Override  //DB에서 엔티티를 불러오는 단계
     public ProductEntity getProductEntity(String productId) {
        return productDao.getProduct((productId));
+    }
+
+    @Override  //DB에서 모든 엔티티를 불러오는 단계
+    public List<ProductEntity> getAllProductEntity(){
+        return productDao.getAllProduct();
     }
 
     @Override

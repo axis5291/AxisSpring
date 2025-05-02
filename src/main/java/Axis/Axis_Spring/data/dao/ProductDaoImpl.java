@@ -1,5 +1,7 @@
 package Axis.Axis_Spring.data.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public  class ProductDaoImpl implements ProductDao {
 
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     //작성자가 객체를 만들지 않고 스프링이 만들어 낸 객체를 끌어와서 쓴다..의존성주입, 스프링은 싱클톤만 사용하기 때문에 미리 레포지토리객체를 하나 띄워놓고 이 하나를 여러곳에서 사용하는 방식
     //그래서 미리 메모리에 띄워져있는 productRepository 객체를 주입
@@ -29,6 +31,11 @@ public  class ProductDaoImpl implements ProductDao {
 
 //findById는 Optional로 값을 반환하므로, 반드시 Optional의 메서드(isPresent(), orElse(), orElseThrow() 등)를 통해 값을 안전하게 처리해야 합니다.
 //실무에서는 orElseThrow를 많이 사용한다. 이 메서드는 Optional이 비어있을 때 예외를 던지도록 해준다.
+
+    @Override
+    public List<ProductEntity> getAllProduct() {
+       return productRepository.findAll();  //findAll()은 List를 반환한다.
+    }
 
 
     @Override
@@ -51,6 +58,7 @@ public  class ProductDaoImpl implements ProductDao {
         return productEntity;
     }
 
+  
 }
 
 

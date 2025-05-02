@@ -1,5 +1,7 @@
 package Axis.Axis_Spring.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,13 +9,11 @@ import Axis.Axis_Spring.data.dto.ProductDto;
 import Axis.Axis_Spring.data.entity.ProductEntity;
 import Axis.Axis_Spring.data.handler.ProductDataHandler;
 
-      /*  서비스 클래스에서 Entity를 Dto로 변환해주는 작업을 했다.
-        이 변환작업은 컨트롤러에서도 할수 있는데 이것은 프로젝트별 상황에 맞게 바낄수 있다.*/
-
+/* ***실무에서는 서비스 계층에서 DTO 변환을 처리하는 것이 일반적이고 좋은 설계*/
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    ProductDataHandler productDataHandler;
+    private final ProductDataHandler productDataHandler;
 
     @Autowired
    public ProductServiceImpl(ProductDataHandler productDataHandler){
@@ -27,14 +27,18 @@ public class ProductServiceImpl implements ProductService {
        return productDto;
    }  //맨 아래의 것을 productEntity.toDto()를 이용하여 변환작업을 해주었다.
 
+   @Override   //*내가 만든거
+   public List<ProductDto> getProductAll() {
+       List<ProductEntity> productAllList = productDataHandler.getAllProductEntity();
+       return productAllList.stream()
+               .map(ProductEntity::toDto) //ProductEntity에서 ProductDto로 변환하는 메서드
+               .toList(); //List<ProductDto>로 변환
 
-//    @Override
-//    public List<ProductDto> getAllProduct() {
-//        List<ProductEntity> productEntityList = productDataHandler.getAllProductEntity();
-       
-//    }
+    //List<ProductEntity> → List<ProductDto>을 작업함
+    //***리스트에서 다른 타입의 값을 담은 새로운 리스트로 변환할 때 stream().map().toList()를 쓰는 거야
+   }
 
-   @Override
+   @Override  //*내가 만든거
    public ProductDto deleteProduct(String productId) {
         ProductEntity productEntity = productDataHandler.deleteProductEntity(productId);
         ProductDto productDto=productEntity.toDto(); //ProductEntity에서 ProductDto로 변환하는 메서드
