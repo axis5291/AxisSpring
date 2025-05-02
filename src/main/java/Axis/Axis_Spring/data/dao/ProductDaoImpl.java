@@ -3,6 +3,7 @@ package Axis.Axis_Spring.data.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import Axis.Axis_Spring.data.entity.ProductEntity;
@@ -10,7 +11,7 @@ import Axis.Axis_Spring.data.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 //DAO는 Repository를 이용하여 작성한다.
-@Service
+@Repository
 public  class ProductDaoImpl implements ProductDao {
 
     private final ProductRepository productRepository;

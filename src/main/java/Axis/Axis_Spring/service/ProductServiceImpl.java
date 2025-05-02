@@ -48,9 +48,13 @@ public class ProductServiceImpl implements ProductService {
    
     @Override
     public ProductDto saveProduct(ProductDto productDto) {
-        ProductEntity productEntitySaved =productDataHandler.saveProductEntity(productDto.toEntity()); //ProductDto를 ProductEntity로 변환하여 저장
-        ProductDto productDtoSaved=productEntitySaved.toDto(); //저장된 ProductEntity를 ProductDto로 변환
-        return productDtoSaved;
+        try{
+            ProductEntity productEntitySaved =productDataHandler.saveProductEntity(productDto.toEntity()); //ProductDto를 ProductEntity로 변환하여 저장
+            ProductDto productDtoSaved=productEntitySaved.toDto(); //저장된 ProductEntity를 ProductDto로 변환
+            return productDtoSaved;  //ProductDto를 반환하는 이유는 저장이 잘 되었다는 것을 알려주기 위해서 
+        }catch (Exception e) {
+            throw new RuntimeException("상품 저장에 실패했습니다.", e); //RuntimeException을 던져서 호출한 곳에서 처리하도록 함
+        }
     }
 
 }
