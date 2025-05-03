@@ -3,7 +3,7 @@ package Axis.Axis_Spring.controller;
 import java.util.List;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory; 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,18 +36,19 @@ public class ProductController {
        
     @GetMapping(value = "/product/{productId}")// id 조회로 데이터출력  http://localhost:8080/api/v1/product-api/product/Axis-Book1 이걸로 Get방식으로 해보자
     public ProductDto getProduct(@PathVariable String productId){
+
         long startTime = System.currentTimeMillis();
         LOGGER.info("[createProduct] perform {} of Axis_Spring API.", "createProduct");
     
         ProductDto productDto=productService.getProduct(productId);
 
-        LOGGER.info(
+        LOGGER.info(  //**{}순서대로 productDto.getProductId()등이 순서대로 들어간다. {}에 전달할 값은 Java의 모든 데이터 타입이 가능합니다(문자열, 숫자, 객체 등).
             "[getProduct] Response :: productId = {}, productName = {}, productPrice = {}, productStock = {}, Response Time = {}ms",
             productDto.getProductId(),
             productDto.getProductName(),
             productDto.getProductPrice(),
             productDto.getProductStock(),
-            (System.currentTimeMillis() - startTime)
+            (System.currentTimeMillis() - startTime)  //수횅시간을 측정하기 위해서 시작시간과 끝시간을 빼준다.
          );
        
             return productDto; 
@@ -66,15 +67,15 @@ public class ProductController {
      }
     
     @PostMapping(value = "/product")  //상품하나를 등록하는 메서드, 하단 아래 제이슨 데이터를 넘겨준다. 하단은 예전방식
-    public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){   
-
+    public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){     
+                                                     //**@Valid의 수행조건은 대상 ProductDto 각 필드에 달려있는 어노테이션만 검사한다.
         LOGGER.info("[createProduct] perform {} of Axis_Spring API.", "createProduct");
 
-         // Validation Code Example
-    if (productDto.getProductId().equals("") || productDto.getProductId().isEmpty()) {
-        LOGGER.error("[createProduct] failed Response :: productId is Empty");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(productDto);
-      }
+    //       @Valid를 안하고 예전에는 아래와 같은 방법으로 유효성 검사를 했다.
+    // if (productDto.getProductId().equals("") || productDto.getProductId().isEmpty()) {  //공백이거나 null값이 들어오면 에러가 나게 설정
+    //     LOGGER.error("[createProduct] failed Response :: productId is Empty");
+    //     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(productDto);
+    //   }
 
         ProductDto response=productService.saveProduct(productDto);
 
