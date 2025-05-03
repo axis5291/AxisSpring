@@ -2,6 +2,8 @@ package Axis.Axis_Spring.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +19,14 @@ import Axis.Axis_Spring.common.Constants;
 import Axis.Axis_Spring.common.exception.AxisSpringException;
 import Axis.Axis_Spring.data.dto.ProductDto;
 import Axis.Axis_Spring.service.ProductService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/product-api")
 public class ProductController {
 
-    private ProductService productService;  
+    private final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
+    private final ProductService productService;  
 
     @Autowired   //생성자 부분에서 이 어노테이션을 쓰면 메모리에 떠 있는 productService를 끌어다 연결해준다.
     public ProductController(ProductService productService){
@@ -32,7 +36,22 @@ public class ProductController {
        
     @GetMapping(value = "/product/{productId}")// id 조회로 데이터출력  http://localhost:8080/api/v1/product-api/product/Axis-Book1 이걸로 Get방식으로 해보자
     public ProductDto getProduct(@PathVariable String productId){
-        return productService.getProduct(productId);
+        long startTime = System.currentTimeMillis();
+        LOGGER.info("[createProduct] perform {} of Axis_Spring API.", "createProduct");
+    
+        ProductDto productDto=productService.getProduct(productId);
+
+        LOGGER.info(
+            "[getProduct] Response :: productId = {}, productName = {}, productPrice = {}, productStock = {}, Response Time = {}ms",
+            productDto.getProductId(),
+            productDto.getProductName(),
+            productDto.getProductPrice(),
+            productDto.getProductStock(),
+            (System.currentTimeMillis() - startTime)
+         );
+       
+            return productDto; 
+            
     }
 
     @GetMapping(value = "/productAll") //*내가 만든거 http://localhost:8080/api/v1/product-api/productAll  
@@ -47,8 +66,26 @@ public class ProductController {
      }
     
     @PostMapping(value = "/product")  //상품하나를 등록하는 메서드, 하단 아래 제이슨 데이터를 넘겨준다. 하단은 예전방식
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){   
+    public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){   
+
+        LOGGER.info("[createProduct] perform {} of Axis_Spring API.", "createProduct");
+
+         // Validation Code Example
+    if (productDto.getProductId().equals("") || productDto.getProductId().isEmpty()) {
+        LOGGER.error("[createProduct] failed Response :: productId is Empty");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(productDto);
+      }
+
         ProductDto response=productService.saveProduct(productDto);
+
+        LOGGER.info(
+            "[createProduct] Response >> productId : {}, productName : {}, productPrice : {}, productStock : {}",
+            response.getProductId(),
+            response.getProductName(),
+            response.getProductPrice(),
+            response.getProductStock()
+        );
+
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
