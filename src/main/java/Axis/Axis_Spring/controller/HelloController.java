@@ -1,11 +1,9 @@
 package Axis.Axis_Spring.controller;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -44,7 +42,7 @@ public class HelloController {
     @ExceptionHandler(value = Exception.class)  // 지역 예외 처리기: 해당 클래스 내에서 발생한 모든 Exception을 처리
     public ResponseEntity<Map<String, String>> exceptionHandler(Exception e) { 
         // 예외가 @ExceptionHandler 메서드에 정상적으로 전달되는지 확인하는 로그
-        LOGGER.info("예외가 ExceptionHandler 메서드에 전달되었습니다.");
+        LOGGER.info("HelloController Class 예외가 ******* 지역 얘외처리 *******처리됨 ");
         LOGGER.error("예외 발생: ", e);  // 예외 객체 출력 (스택 트레이스 포함)
 
         // 응답 헤더와 상태 코드 설정
