@@ -68,7 +68,7 @@ public class ProductController {
     
     @PostMapping(value = "/product")  //상품하나를 등록하는 메서드, 하단 아래 제이슨 데이터를 넘겨준다. 하단은 예전방식
     public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){     
-                                                     //**@Valid의 수행조건은 대상 ProductDto 각 필드에 달려있는 어노테이션만 검사한다.
+                                                     //**@Valid의 수행대상은은 ProductDto 각 필드에 달려있는 어노테이션만 검사한다.
         LOGGER.info("[createProduct] perform {} of Axis_Spring API.", "createProduct");
 
     //       @Valid를 안하고 예전에는 아래와 같은 방법으로 유효성 검사를 했다.

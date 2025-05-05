@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice //***전역설정(지역설정이 더 우선순위에 있다.), 모든 컨트롤러에서 발생하는 예외처리는 여기서 정의하고 처리하겠다라는 의미
+//***@RestControllerAdvice:전역예외처리 어노테이션(지역설정이 더 우선순위에 있다.)
+// @Controller, @RestController 클래스에서만 발생한 예외만 처리
+@RestControllerAdvice 
 public class AxisSpringExceptionHandler {
     private final Logger LOGGER = LoggerFactory.getLogger(AxisSpringExceptionHandler.class);
 
