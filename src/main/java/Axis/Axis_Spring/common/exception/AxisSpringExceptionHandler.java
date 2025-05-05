@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class AxisSpringExceptionHandler {
     private final Logger LOGGER = LoggerFactory.getLogger(AxisSpringExceptionHandler.class);
 
-    @ExceptionHandler(value = Exception.class)
-    //@ExceptionHandler 이것을 사용하면 발생하는 예외마다 처리할 메서드를 저의
+    @ExceptionHandler(value = Exception.class)  //@ExceptionHandler(value = Exception.class) Exception클래스  이하의 하위 클래스에서 발생한 예외라면 이 메서드에서 처리한다."
     public ResponseEntity<Map<String, String>> ExceptionHandler(Exception e){
         HttpHeaders responseHeadres =new HttpHeaders();
         HttpStatus httpStatus=HttpStatus.BAD_REQUEST;
@@ -40,10 +39,13 @@ public class AxisSpringExceptionHandler {
 
         Map<String, String> map=new HashMap<>();
         map.put("Error Type:", e.getHttpStatusType());
-        map.put("Code", Integer.toString(e.getHttpStatusCode()));
+        map.put("Code", Integer.toString(e.getHttpStatusCode()));  //Map<String, String>이고  e.getHttpStatusCode()반환이 int형이므로 String형으로 변환
         map.put("Message", e.getMessage());
 
         return new ResponseEntity<>(map, responseHeadres, e.getHttpStatus());
     }
 
 }
+
+// @ExceptionHandler는 "이 메서드는 특정 예외를 처리하는 용도입니다" 라고 Spring에 알려주는 어노테이션입니다.
+// value 또는 메서드 파라미터를 통해 어떤 예외를 처리할지를 명시합니다.

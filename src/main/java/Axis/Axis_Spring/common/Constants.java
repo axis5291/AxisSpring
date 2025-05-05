@@ -20,3 +20,5 @@ public class Constants {
 
     }
 }
+//클래스명.이넘명.상수 형식으로 사용하면 된다. 
+//예를 들어 Constants.ExceptionClass.PRODUCT.getExceptionClass()는 "Product"를 반환한다.

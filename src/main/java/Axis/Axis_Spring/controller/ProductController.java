@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Axis.Axis_Spring.common.Constants;
+import Axis.Axis_Spring.common.Constants.ExceptionClass;
 import Axis.Axis_Spring.common.exception.AxisSpringException;
 import Axis.Axis_Spring.data.dto.ProductDto;
 import Axis.Axis_Spring.service.ProductService;
@@ -92,8 +92,8 @@ public class ProductController {
     }
 
     @PostMapping(value = "/product/exception")
-    public void exceptionTest() throws AxisSpringException{
-        throw  new AxisSpringException(Constants.ExceptionClass.PRODUCT, HttpStatus.FORBIDDEN, " 접근이 금지되었습니다.");
+    public void exceptionTest() throws AxisSpringException{   //사용자가 만든 예외처리 클래스를 이용하여 예외처리
+        throw  new AxisSpringException(ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, " 의도한 에러가 발생했습니디.");
    }
 }
 
