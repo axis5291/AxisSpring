@@ -1,4 +1,4 @@
-package Axis.Axis_Spring.controller;
+package Axis.Axis_Spring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

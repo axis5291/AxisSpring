@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Axis.Axis_Spring.data.dto.MemberDto;
 import Axis.Axis_Spring.service.RestTemplateService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-//RestTemplateServiceImpl와 메서드가 각각 5개씩 매칭이 되어 있다.
-//컨트롤러쪽에서는 RestTemplateServiceImpl의 메서드만 호출하는 구조이다
-
+//서버간의 통신을 위한 RestTemplate을 이용한 예제 컨트롤러, 
+@Tag(name = "RestTemplate를 이용한 서버간의 통신", description = "2대의 Axis_Spring과 AxisServerBox간의 RestTemplate를 이용하여 통신하는 예제")
 @RestController
 @RequestMapping(value = "/api/rest-template")
 public class RestTemlpateController {
@@ -39,11 +40,13 @@ public class RestTemlpateController {
         return restTemplateService.getName2();
     }
 
+    @Operation(summary = "POST 요청:내용만 전달", description = "POST 요청을 통해 DTO를 전송하는 예제입니다.")
     @PostMapping(value = "/dto")
     public ResponseEntity<MemberDto> postDto() {
         return restTemplateService.postDto();
     }
 
+    @Operation(summary = "POST 요청:헤더를 포함 추가적으로 세부내용 전달", description = "POST 요청을 통해 DTO와 커스텀 헤더를 전송하는 예제입니다.")
     @PostMapping(value = "/add-header")
     public ResponseEntity<MemberDto> addHeader() {
         return restTemplateService.addHeader();

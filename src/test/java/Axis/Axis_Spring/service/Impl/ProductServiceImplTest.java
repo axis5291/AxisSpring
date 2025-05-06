@@ -16,7 +16,8 @@ import Axis.Axis_Spring.data.entity.ProductEntity;
 import Axis.Axis_Spring.data.handler.ProductDataHandlerImpl;
 import Axis.Axis_Spring.service.ProductServiceImpl;
 
-// 필요한 부분만 가져다 쓰는 것이 아래와 같은 방식이다.
+// @SpringBootTest와 같이 전체를 가동하면 부하가 많이 걸리므로 필요한 부분만 가져다 쓰는 것이 아래와 같은 방식이다. @ExtendWith + @Import = 내가 필요한 가게 두세 개만 골라서 열기
+//@ExtendWith(SpringExtension.class) ->DI(의존성 주입), 컨텍스트 관리 등 핵심 기능만
 @ExtendWith(SpringExtension.class)  // @ExtendWith은 @SpringBootTest의 일부분이다.
 @Import({ProductDataHandlerImpl.class, ProductServiceImpl.class})
 public class ProductServiceImplTest {

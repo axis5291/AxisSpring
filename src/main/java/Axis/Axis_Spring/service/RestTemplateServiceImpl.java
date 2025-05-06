@@ -11,8 +11,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import Axis.Axis_Spring.data.dto.MemberDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 //이서비스를 사용할려면 AxisServerBox의 별도의 springApp를 사용하여 구동시켜야 한다. AxisServerBox에서 요청에 대한 응답을 하는 별도의 서버이다.
 // RestTemplate은 Spring Framework에서 제공하는 HTTP 통신 클라이언트,  다른 서버(혹은 내 서버의 다른 서비스)와 통신할 수 있게 해주는 도구
+
 @Service
 public class RestTemplateServiceImpl implements RestTemplateService {
 
@@ -79,61 +82,77 @@ public class RestTemplateServiceImpl implements RestTemplateService {
         return responseEntity.getBody();
     }
 
+   
     @Override
-    public ResponseEntity<MemberDto> postDto(){
+    public ResponseEntity<MemberDto> postDto() {   // [✔] 단순히 요청 본문만 전송하는 POST 예제
         System.out.println("postDto() 메서드 실행");
-        URI uri= UriComponentsBuilder
+    
+        URI uri = UriComponentsBuilder
                 .fromUriString("http://localhost:9090")
                 .path("/api/server/member")
-                .queryParam("name", "Erlia22")
+                .queryParam("name", "Erlia22")   // [❗] 실제 서버에서 이 파라미터를 RequestParam으로 받을 경우에만 의미 있음
                 .queryParam("email", "erlia22@navre.com")
                 .queryParam("group", "Axis22")
-                .encode()   
+                .encode()
                 .build()
-                .toUri(); 
-
-        MemberDto memberDTO=new MemberDto();   //RequestBody에 값을 넣기 위해 사용
+                .toUri();
+    
+        MemberDto memberDTO = new MemberDto();   // 요청 본문에 담길 DTO 생성
         memberDTO.setName("erlia22");
         memberDTO.setEmail("aaa22@ssa.com");
         memberDTO.setGroup("Axis22");
-
-        RestTemplate restTemplate=new RestTemplate();
-        ResponseEntity<MemberDto> responseEntity=restTemplate.postForEntity(uri, memberDTO, MemberDto.class);
-//request값:memberDTO, MemberDTO.class:리턴받는 타입
+    
+        RestTemplate restTemplate = new RestTemplate();
+        
+        // [✔] postForEntity(): URI, 요청 바디, 응답 타입을 받아 POST 요청을 전송
+        ResponseEntity<MemberDto> responseEntity =
+                restTemplate.postForEntity(uri, memberDTO, MemberDto.class);
+    
         LOGGER.info("status code:{}", responseEntity.getStatusCode());
         LOGGER.info("body: {}", responseEntity.getBody());
-
+    
         return responseEntity;
-
     }
-
+    
     @Override
-    public ResponseEntity<MemberDto> addHeader(){
+    public ResponseEntity<MemberDto> addHeader() {   // [✔] 요청 본문 + 커스텀 헤더까지 포함하여 전송하는 POST 예제
         System.out.println("addHeader() 메서드 실행");
-        URI uri= UriComponentsBuilder
+    
+        URI uri = UriComponentsBuilder
                 .fromUriString("http://localhost:9090")
                 .path("/api/server/add-header")
-                .encode()   
+                .encode()
                 .build()
-                .toUri(); 
-
-        MemberDto memberDTO=new MemberDto();
+                .toUri();
+    
+        MemberDto memberDTO = new MemberDto();
         memberDTO.setName("erlia5291");
         memberDTO.setEmail("aaa@ssa.com");
         memberDTO.setGroup("Axis5291");
-
-        RequestEntity<MemberDto> requestEntity=RequestEntity   //여기서 차이점
-                .post(uri)   //post메서드를 사용하겠다.
-                .header("Axis-Header", "Axis Spring")  //키값과 value값
+    
+        // [✔] RequestEntity를 사용하면 메서드, URI, 헤더, 본문까지 모두 설정 가능
+        RequestEntity<MemberDto> requestEntity = RequestEntity
+                .post(uri)
+                .header("Axis-Header", "Axis Spring에서 보낸 header값입니다.")  // [✔] 커스텀 헤더 설정
                 .body(memberDTO);
-     
-        RestTemplate restTemplate=new RestTemplate();
-        ResponseEntity<MemberDto> responseEntity=restTemplate.exchange(requestEntity, MemberDto.class);
-       
+    
+        RestTemplate restTemplate = new RestTemplate();
+        
+        // [✔] exchange(): RequestEntity를 사용해 요청 전송, 응답 타입은 MemberDto
+        ResponseEntity<MemberDto> responseEntity = restTemplate.exchange(requestEntity, MemberDto.class);
+    
         LOGGER.info("status code:{}", responseEntity.getStatusCode());
         LOGGER.info("body: {}", responseEntity.getBody());
-
+    
         return responseEntity;
-
     }
+    
 }
+
+// 🔍 왜 postForEntity() 말고 exchange() + RequestEntity?
+// postForEntity()는 간단하지만, 헤더를 따로 설정하거나 요청 옵션을 세밀하게 제어하기 어렵습니다.
+// exchange()는 RequestEntity를 받아서 헤더 포함 전체 요청을 유연하게 처리할 수 있는 메서드입니다.
+
+
+// restTemplate.postForEntity(uri, memberDTO, MemberDto.class);
+// 헤더 설정 불가, 기본 Content-Type만 가능
