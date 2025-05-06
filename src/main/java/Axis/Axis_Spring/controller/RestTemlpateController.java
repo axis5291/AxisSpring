@@ -29,9 +29,9 @@ public class RestTemlpateController {
         return restTemplateService.getAxis();
     }
 
-    @GetMapping(value = "/name")
-    public String getName() {
-        return restTemplateService.getName();
+    @GetMapping(value = "/name1")
+    public String getName1() {
+        return restTemplateService.getName1();
     }
 
     @GetMapping(value = "/name2")

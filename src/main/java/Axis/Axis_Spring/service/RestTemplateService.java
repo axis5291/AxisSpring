@@ -6,7 +6,7 @@ import Axis.Axis_Spring.data.dto.MemberDto;
 
 public interface RestTemplateService {
     public String getAxis();
-    public String getName();
+    public String getName1();
     public String getName2();
 
     public ResponseEntity<MemberDto> postDto();
