@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Constants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Axis-Spring</a> &gt; <a href="index.source.html" class="el_package">Axis.Axis_Spring.common</a> &gt; <span class="el_source">Constants.java</span></div><h1>Constants.java</h1><pre class="source lang-java linenums">package Axis.Axis_Spring.common;
+
+<span class="nc" id="L3">public class Constants {</span>
+<span class="nc" id="L4">    public enum ExceptionClass {</span>
+<span class="nc" id="L5">        PRODUCT(&quot;Product&quot;), ORDER(&quot;Order&quot;), PROVIDER(&quot;Provider&quot;);</span>
+
+        private String exceptionClass;
+
+<span class="nc" id="L9">        ExceptionClass(String exceptionClass) {</span>
+<span class="nc" id="L10">            this.exceptionClass = exceptionClass;</span>
+<span class="nc" id="L11">        }</span>
+
+        public String getExceptionClass(){
+<span class="nc" id="L14">            return exceptionClass;</span>
+        }
+        @Override
+        public String toString(){
+<span class="nc" id="L18">            return getExceptionClass()+&quot; Exception&quot;;</span>
+        }
+
+    }
+}
+//클래스명.이넘명.상수 형식으로 사용하면 된다. 
+//예를 들어 Constants.ExceptionClass.PRODUCT.getExceptionClass()는 &quot;Product&quot;를 반환한다.
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

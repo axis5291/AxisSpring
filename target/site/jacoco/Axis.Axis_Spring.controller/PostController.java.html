@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PostController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Axis-Spring</a> &gt; <a href="index.source.html" class="el_package">Axis.Axis_Spring.controller</a> &gt; <span class="el_source">PostController.java</span></div><h1>PostController.java</h1><pre class="source lang-java linenums">package Axis.Axis_Spring.controller;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import Axis.Axis_Spring.data.dto.MemberDto;
+/*
+Post API- 리소스를 추가하기 위해 사용되는 API:일반적으로 추가하고 하는 리소스를 http body에 추가하여 서버에 요청, 그렇기 때문에 @ResponseBody를 이용하여 body에 담겨 있는 것을 받아야 함
+참고사항:에러번호 400번대는 클라이언트 에러, 500번대 서버쪽 에러
+* */
+@RestController
+@RequestMapping(&quot;/api/v1/post-api&quot;)   // http://localhost:8080/api/v1/post-api/default  그냥하면 에러, postman으로 테스트할때는 body에 넣어줘야 함
+<span class="fc" id="L19">public class PostController {</span>
+
+    @PostMapping(value = &quot;/default&quot;)
+    public String postMethod(){
+<span class="nc" id="L23">        return &quot;Post Hello World&quot;;</span>
+    }
+/*
+ 아래는 json형태로 바디값에 덧붙여서 전송해보자,  이것을 바탕으로 아래 2개의 메서드를 실행하는 방식이다. 이 Json을 안붙이면 서버에러를 뜻하는 400번대 에러가 발생한다.
+        {
+          &quot;name&quot;:&quot;erlia&quot;,
+          &quot;email&quot;:&quot;erlia@naver.com&quot;,
+           &quot;group&quot;:&quot;axis&quot;,
+          &quot;sex&quot;:&quot;man&quot;
+        }
+   */
+/*
+  @RequestBody 어노테이션은 HTTP 요청의 본문(body)에 포함된   JSON, XML 등  기타 포맷의 데이터를 Java 객체로 변환하는 역할을 합니다.
+   1. @RequestBody로 받은 JSON 데이터를 Map으로 변환하여 사용
+       Map&lt;String, Object&gt; 형태로 받아서  key와 value를 직접 꺼내서 처리함,   어떤 데이터가 들어올지 모를 때 유용  */
+
+    @PostMapping(value = &quot;/member&quot;)     // http://localhost:8080/api/v1/post-api/member
+    public String postMember(@RequestBody Map&lt;String, Object&gt; postData){  //value값이 어떤게 들어올지 몰라서 Object로 설정
+<span class="nc" id="L41">        StringBuilder sb=new StringBuilder();</span>
+
+       // postData.entrySet().forEach(map-&gt;{sb.append(map.getKey()+&quot;:&quot;+map.getValue()+&quot;\n&quot;); });
+<span class="nc" id="L44">        postData.forEach((key, value)-&gt;{sb.append(key+&quot;:&quot;+value+&quot;\n&quot;);});   //자바8부터 가능</span>
+<span class="nc" id="L45">        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;)) + &quot;-&gt; http://localhost:8080/api/v1/post-api/member가 실행되었습니다&quot;);</span>
+
+<span class="nc" id="L47">        return sb.toString();</span>
+    }
+  
+/* 2. @RequestBody로 받은 JSON 데이터를 DTO 객체로 변환하여 사용 -&gt; ***실무에서는 이게 더 많이 사용
+      미리 정의된 MemberDTO 클래스가 필요, 필드 이름과 JSON key가 일치해야 함,  타입 안정성과 구조화된 데이터 처리에 유리 */
+    @PostMapping(value = &quot;/member2&quot;)         // http://localhost:8080/api/v1/post-api/member2
+    public String postMember2(@RequestBody MemberDto memberDTO){
+<span class="nc" id="L54">        return memberDTO.toString();   //MemberDTO에 @toString() 어노테이션이 붙어있어야 함</span>
+    }
+   
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

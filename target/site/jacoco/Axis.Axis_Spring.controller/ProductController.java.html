@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Axis-Spring</a> &gt; <a href="index.source.html" class="el_package">Axis.Axis_Spring.controller</a> &gt; <span class="el_source">ProductController.java</span></div><h1>ProductController.java</h1><pre class="source lang-java linenums">package Axis.Axis_Spring.controller;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import Axis.Axis_Spring.common.Constants.ExceptionClass;
+import Axis.Axis_Spring.common.exception.AxisSpringException;
+import Axis.Axis_Spring.data.dto.ProductDto;
+import Axis.Axis_Spring.service.ProductService;
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping(&quot;/api/v1/product-api&quot;)
+public class ProductController {
+
+<span class="fc" id="L28">    private final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);</span>
+    private final ProductService productService;  
+
+    @Autowired   //생성자 부분에서 이 어노테이션을 쓰면 메모리에 떠 있는 productService를 끌어다 연결해준다.
+<span class="fc" id="L32">    public ProductController(ProductService productService){</span>
+<span class="fc" id="L33">                this.productService=productService;</span>
+<span class="fc" id="L34">    }</span>
+   
+       
+    @GetMapping(value = &quot;/product/{productId}&quot;)// id 조회로 데이터출력  http://localhost:8080/api/v1/product-api/product/Axis-Book1 이걸로 Get방식으로 해보자
+    public ProductDto getProduct(@PathVariable String productId){
+
+<span class="fc" id="L40">        long startTime = System.currentTimeMillis();</span>
+<span class="fc" id="L41">        LOGGER.info(&quot;[createProduct] perform {} of Axis_Spring API.&quot;, &quot;createProduct&quot;);</span>
+    
+<span class="fc" id="L43">        ProductDto productDto=productService.getProduct(productId);</span>
+
+<span class="fc" id="L45">        LOGGER.info(  //**{}순서대로 productDto.getProductId()등이 순서대로 들어간다. {}에 전달할 값은 Java의 모든 데이터 타입이 가능합니다(문자열, 숫자, 객체 등).</span>
+            &quot;[getProduct] Response :: productId = {}, productName = {}, productPrice = {}, productStock = {}, Response Time = {}ms&quot;,
+<span class="fc" id="L47">            productDto.getProductId(),</span>
+<span class="fc" id="L48">            productDto.getProductName(),</span>
+<span class="fc" id="L49">            productDto.getProductPrice(),</span>
+<span class="fc" id="L50">            productDto.getProductStock(),</span>
+<span class="fc" id="L51">            (System.currentTimeMillis() - startTime)  //수횅시간을 측정하기 위해서 시작시간과 끝시간을 빼준다.</span>
+         );
+       
+<span class="fc" id="L54">            return productDto; </span>
+            
+    }
+
+    @GetMapping(value = &quot;/productAll&quot;) //*내가 만든거 http://localhost:8080/api/v1/product-api/productAll  
+    public ResponseEntity&lt;List&lt;ProductDto&gt;&gt; getProductAll(){
+<span class="nc" id="L60">        return ResponseEntity.status(HttpStatus.OK).body(productService.getProductAll());</span>
+    }
+
+     
+     @DeleteMapping(value = &quot;/productDelete/{productId}&quot;)  //*내가 만든거  http://localhost:8080/api/v1/product-api/productDelete/{productId}
+     public ProductDto deleteProduct(@PathVariable String productId){
+<span class="nc" id="L66">            return  productService.deleteProduct(productId); //삭제 후 다시 조회해보면 null값이 나와야함</span>
+     }
+    
+    @PostMapping(value = &quot;/product&quot;)  //상품하나를 등록하는 메서드, 하단 아래 제이슨 데이터를 넘겨준다. 하단은 예전방식
+    public ResponseEntity&lt;ProductDto&gt; createProduct(@Valid @RequestBody ProductDto productDto){     
+                                                     //**@Valid의 수행대상은은 ProductDto 각 필드에 달려있는 어노테이션만 검사한다.
+<span class="fc" id="L72">        LOGGER.info(&quot;[createProduct] perform {} of Axis_Spring API.&quot;, &quot;createProduct&quot;);</span>
+
+    //       @Valid를 안하고 예전에는 아래와 같은 방법으로 유효성 검사를 했다.
+    // if (productDto.getProductId().equals(&quot;&quot;) || productDto.getProductId().isEmpty()) {  //공백이거나 null값이 들어오면 에러가 나게 설정
+    //     LOGGER.error(&quot;[createProduct] failed Response :: productId is Empty&quot;);
+    //     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(productDto);
+    //   }
+
+<span class="fc" id="L80">        ProductDto response=productService.saveProduct(productDto);</span>
+
+<span class="fc" id="L82">        LOGGER.info(</span>
+            &quot;[createProduct] Response &gt;&gt; productId : {}, productName : {}, productPrice : {}, productStock : {}&quot;,
+<span class="fc" id="L84">            response.getProductId(),</span>
+<span class="fc" id="L85">            response.getProductName(),</span>
+<span class="fc" id="L86">            response.getProductPrice(),</span>
+<span class="fc" id="L87">            response.getProductStock()</span>
+        );
+
+<span class="fc" id="L90">        return ResponseEntity.status(HttpStatus.OK).body(response);</span>
+
+    }
+
+    @PostMapping(value = &quot;/product/exception&quot;)
+    public void exceptionTest() throws AxisSpringException{   //사용자가 만든 예외처리 클래스를 이용하여 예외처리
+<span class="nc" id="L96">        throw  new AxisSpringException(ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, &quot; 의도한 에러가 발생했습니디.&quot;);</span>
+   }
+}
+
+//     @PostMapping(value = &quot;/product&quot;)  //상품하나를 등록하는 메서드, 하단 아래 제이슨 데이터를 넘겨준다.(예전방식)
+//     public ResponseEntity&lt;ProductDto&gt; createProduct(@Valid @RequestBody ProductDto productDto){   
+//          
+//         String productId=productDto.getProductId();
+//         String productName=productDto.getProductName();
+//         int productPrice=productDto.getProductPrice();
+//         int productStock=productDto.getProductStock();
+
+//         ProductDto response=productService.saveProduct(productId, productName, productPrice, productStock);
+//         return ResponseEntity.status(HttpStatus.OK).body(response);
+
+//     }
+
+//@Valid 유효성 검사를 하는 항목인데, ProductDto에서의 필드값에 유효하지 않은 값이 넘어가면 에러가 발생하게 설정하는것, 상품가격을 -500등으로 넘기면 에러가 발생하게 설정
+  //http://localhost:8080/api/v1/product-api/product 페이지에서 제이슨 형태의 데이터를 메모리에 떠있는 productDto객체에 넘긴다.
+
+
+    //http://localhost:8080/api/v1/product-api/product    post방식으로 postman으로 테스트 아래 제이슨테이터 삽입
+
+    /* 상품등록 테스트에 쓸 제이슨 데이터
+    {
+        &quot;productId&quot;:&quot;Axis-Book&quot;,
+        &quot;productName&quot;:&quot;Axis-Book-1&quot;,
+        &quot;productPrice&quot;:&quot;5000&quot;,
+        &quot;productStock&quot;:&quot;5&quot;
+    }   */
+ 
+
+//        
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

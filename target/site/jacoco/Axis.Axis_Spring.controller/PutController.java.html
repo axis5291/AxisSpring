@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PutController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Axis-Spring</a> &gt; <a href="index.source.html" class="el_package">Axis.Axis_Spring.controller</a> &gt; <span class="el_source">PutController.java</span></div><h1>PutController.java</h1><pre class="source lang-java linenums">package Axis.Axis_Spring.controller;
+
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import Axis.Axis_Spring.data.dto.MemberDto;
+
+/*Put API:해당 리소스가 있으면 갱신하고, 없으면 새로 생성한다. 업데이트를 위한 메서드, 기본적인 동작 방식은 Post API와 동일 */
+@RestController
+@RequestMapping(&quot;/api/v1/put-api&quot;)
+<span class="fc" id="L17">public class PutController {</span>
+
+    @PutMapping(value = &quot;/default&quot;)
+    public String putMethod(){
+<span class="nc" id="L21">        return &quot;Put Melthod&quot;;</span>
+    }
+
+    @PutMapping(value = &quot;/member&quot;)
+    public String postMember(@RequestBody Map&lt;String, Object&gt; putData){
+<span class="nc" id="L26">        StringBuilder sb=new StringBuilder();</span>
+<span class="nc" id="L27">        putData.entrySet().forEach(map-&gt;{</span>
+<span class="nc" id="L28">            sb.append(map.getKey()+&quot;:&quot;+map.getValue()+&quot;\n&quot;);</span>
+<span class="nc" id="L29">        }</span>
+        );
+<span class="nc" id="L31">        return sb.toString();</span>
+    }
+
+    //아래 3가지가 핵심포인트
+    //1.toString을 이용하는 방법..결과값 모양이 달라진다.
+    @PutMapping(value = &quot;/member1&quot;)
+    public String postMemberDto1(@RequestBody MemberDto memberDTO){
+<span class="nc" id="L38">        return memberDTO.toString();</span>
+    }
+    //http://localhost:8080/api/v1/put-api/member1
+
+    //2.Json형식 그대로 보여줌..일반적으로 클라이언트쪽에서도 제이슨 형식을 사용하므로  이방법을 더 선호
+    @PutMapping(value = &quot;/member2&quot;)
+    public MemberDto postMemberDto2(@RequestBody MemberDto memberDTO){
+<span class="nc" id="L45">        return memberDTO;</span>
+    }
+    //http://localhost:8080/api/v1/put-api/member2
+
+    @PutMapping(value = &quot;/member3&quot;)
+    public ResponseEntity&lt;MemberDto&gt; postMemberDto3(@RequestBody MemberDto memberDTO){
+<span class="nc" id="L51">        return ResponseEntity.status(HttpStatus.ACCEPTED).body(memberDTO);</span>
+        //HttpStatus.ACCEPTED-&gt;실행하면 코드값이 202임을 확인할 수 있다.
+        // (ACCEPTED를 눌러 링크로 들어가 확인 하면 각종 enum을 확인가능
+        //body(memberDTO) -&gt;위의 return memberDTO;와 동일한 효과를 낸다.
+    }
+    //http://localhost:8080/api/v1/put-api/member3
+   /*   Response Entity는 HttpEntity를 상속받아 구현한 클래스이다. public class ResponseEntity&lt;T&gt; extends HttpEntity&lt;T&gt;
+        HttpEntity는 HTTP 요청 혹은 응답에 해당하는 HttpHeader와 HttpBody를 포함하는 클래스이다.
+        ResponseEnitity는 사용자의 HttpRequest에 대한 응답 데이터를 포함하는 클래스이다.
+        따라서 HttpStatus, HttpHeaders, HttpBody를 포함한다.*/
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

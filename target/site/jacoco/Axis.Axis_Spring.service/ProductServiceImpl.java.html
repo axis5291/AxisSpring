@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Axis-Spring</a> &gt; <a href="index.source.html" class="el_package">Axis.Axis_Spring.service</a> &gt; <span class="el_source">ProductServiceImpl.java</span></div><h1>ProductServiceImpl.java</h1><pre class="source lang-java linenums">package Axis.Axis_Spring.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import Axis.Axis_Spring.data.dto.ProductDto;
+import Axis.Axis_Spring.data.entity.ProductEntity;
+import Axis.Axis_Spring.data.handler.ProductDataHandler;
+
+/* ***실무에서는 서비스 계층에서 DTO 변환을 처리하는 것이 일반적이고 좋은 설계*/
+@Service
+public class ProductServiceImpl implements ProductService {
+
+    private final ProductDataHandler productDataHandler;
+
+    @Autowired
+<span class="fc" id="L19">   public ProductServiceImpl(ProductDataHandler productDataHandler){</span>
+<span class="fc" id="L20">       this.productDataHandler=productDataHandler;</span>
+<span class="fc" id="L21">   }</span>
+
+   @Override
+   public ProductDto getProduct(String productId) {
+<span class="fc" id="L25">       ProductEntity productEntity =productDataHandler.getProductEntity(productId);</span>
+<span class="fc" id="L26">       ProductDto productDto=productEntity.toDto(); //ProductEntity에서 ProductDto로 변환하는 메서드</span>
+<span class="fc" id="L27">       return productDto;</span>
+   }  //맨 아래의 것을 productEntity.toDto()를 이용하여 변환작업을 해주었다.
+
+   @Override   //*내가 만든거
+   public List&lt;ProductDto&gt; getProductAll() {
+<span class="nc" id="L32">       List&lt;ProductEntity&gt; productAllList = productDataHandler.getAllProductEntity();</span>
+<span class="nc" id="L33">       return productAllList.stream()</span>
+<span class="nc" id="L34">               .map(ProductEntity::toDto) //ProductEntity에서 ProductDto로 변환하는 메서드</span>
+<span class="nc" id="L35">               .toList(); //List&lt;ProductDto&gt;로 변환</span>
+
+    //List&lt;ProductEntity&gt; → List&lt;ProductDto&gt;을 작업함
+    //***리스트에서 다른 타입의 값을 담은 새로운 리스트로 변환할 때 stream().map().toList()를 쓰는 거야
+   }
+
+   @Override  //*내가 만든거
+   public ProductDto deleteProduct(String productId) {
+<span class="nc" id="L43">        ProductEntity productEntity = productDataHandler.deleteProductEntity(productId);</span>
+<span class="nc" id="L44">        ProductDto productDto=productEntity.toDto(); //ProductEntity에서 ProductDto로 변환하는 메서드</span>
+<span class="nc" id="L45">        return productDto;</span>
+      
+   }
+   
+    @Override
+    public ProductDto saveProduct(ProductDto productDto) {
+        try{
+<span class="fc" id="L52">            ProductEntity productEntitySaved =productDataHandler.saveProductEntity(productDto.toEntity()); //ProductDto를 ProductEntity로 변환하여 저장</span>
+<span class="fc" id="L53">            ProductDto productDtoSaved=productEntitySaved.toDto(); //저장된 ProductEntity를 ProductDto로 변환</span>
+<span class="fc" id="L54">            return productDtoSaved;  //ProductDto를 반환하는 이유는 저장이 잘 되었다는 것을 알려주기 위해서 </span>
+<span class="nc" id="L55">        }catch (Exception e) {</span>
+<span class="nc" id="L56">            throw new RuntimeException(&quot;상품 저장에 실패했습니다.&quot;, e); //RuntimeException을 던져서 호출한 곳에서 처리하도록 함</span>
+        }
+    }
+
+}
+
+//    @Override
+//    public ProductDto getProduct(String productId) {
+//        ProductEntity productEntity =productDataHandler.getProductEntity(productId);
+//        ProductDto productDto=new ProductDto(productEntity.getProductId(), productEntity.getProductName(),
+//        productEntity.getProductPrice(), productEntity.getProductStock());
+//        return productDto;
+//    }
+
+
+// @Override
+// public ProductDto saveProduct(String productId, String productName, int productPrice, int productStock) {
+//     ProductEntity productEntity =productDataHandler.saveProductEntity(productId, productName, productPrice, productStock);
+//     ProductDto productDto=productEntity.toDto(); //ProductEntity에서 ProductDto로 변환하는 메서드
+//     return productDto;
+// }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

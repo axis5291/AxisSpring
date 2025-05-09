@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HelloController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Axis-Spring</a> &gt; <a href="index.source.html" class="el_package">Axis.Axis_Spring.controller</a> &gt; <span class="el_source">HelloController.java</span></div><h1>HelloController.java</h1><pre class="source lang-java linenums">package Axis.Axis_Spring.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+// 예외가 발생했을 때 예외 처리 흐름을 테스트하기 위한 컨트롤러 클래스, 여기에서는 exception 폴더의 axisSpringExceptionHandler에서 전역적으로 예외를 처리하지만
+//exceptionHandler로 지역적으로 설정(전역보다 우선됨)했지만 이게 잘 안되고 있다.
+@RestController   // RESTful 웹 서비스 컨트롤러 클래스임을 나타냄
+<span class="fc" id="L19">public class HelloController {</span>
+
+<span class="fc" id="L21">    private final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);  // 로깅을 위한 Logger 객체 생성</span>
+
+    @GetMapping(&quot;/hello&quot;)    // HTTP GET 요청을 처리하는 엔드포인트
+    public String hello(){
+<span class="nc" id="L25">        return &quot;Hello World Axis Spring!!&quot;;  // 요청에 대해 간단한 문자열 반환</span>
+    }
+
+    @PostMapping(&quot;/log-test&quot;)  // HTTP POST 요청을 처리하는 엔드포인트
+    public void logTest() {  
+        // 다양한 로그 레벨을 기록
+<span class="nc" id="L31">        LOGGER.trace(&quot;Trace Log&quot;);</span>
+<span class="nc" id="L32">        LOGGER.debug(&quot;Debug Log&quot;);</span>
+<span class="nc" id="L33">        LOGGER.info(&quot;Info Log&quot;);</span>
+<span class="nc" id="L34">        LOGGER.warn(&quot;Warn Log&quot;);</span>
+<span class="nc" id="L35">        LOGGER.error(&quot;Error Log&quot;);</span>
+<span class="nc" id="L36">    }</span>
+
+    @PostMapping(&quot;/exception&quot;)  // HTTP POST 요청을 처리하는 엔드포인트 (http://localhost:8080/exception)
+    public void exceptionTest() throws Exception{  // 예외를 의도적으로 발생시켜서 예외 처리 흐름을 테스트
+<span class="nc" id="L40">        LOGGER.info(&quot;exceptionTest() 메서드에서 예외 발생&quot;);</span>
+<span class="nc" id="L41">        throw new Exception(&quot;테스트 예외 발생&quot;);  // 의도적으로 예외를 발생</span>
+    }
+
+    @ExceptionHandler(value = Exception.class)  // 지역 예외 처리기: 해당 클래스 내에서 발생한 모든 Exception을 처리
+    public ResponseEntity&lt;Map&lt;String, String&gt;&gt; exceptionHandler(Exception e) { 
+        // 예외가 @ExceptionHandler 메서드에 정상적으로 전달되는지 확인하는 로그
+<span class="nc" id="L47">        LOGGER.info(&quot;HelloController Class 예외가 ******* 지역 얘외처리 *******처리됨 &quot;);</span>
+<span class="nc" id="L48">        LOGGER.error(&quot;예외 발생: &quot;, e);  // 예외 객체 출력 (스택 트레이스 포함)</span>
+
+        // 응답 헤더와 상태 코드 설정
+<span class="nc" id="L51">        HttpHeaders responseHeaders = new HttpHeaders();</span>
+<span class="nc" id="L52">        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;</span>
+
+        // 응답 데이터 맵 작성
+<span class="nc" id="L55">        Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L56">        map.put(&quot;Error Type:&quot;, httpStatus.getReasonPhrase());  // 에러 타입 (Bad Request)</span>
+<span class="nc" id="L57">        map.put(&quot;Code&quot;, &quot;404&quot;);  // 에러 코드</span>
+<span class="nc" id="L58">        map.put(&quot;Message&quot;, e.getMessage());  // 예외 메시지 (예외에서 전달된 메시지)</span>
+
+        // ResponseEntity 객체 생성 후 반환 (응답 본문, 헤더, 상태 코드 포함)
+<span class="nc" id="L61">        ResponseEntity&lt;Map&lt;String, String&gt;&gt; re = new ResponseEntity&lt;&gt;(map, responseHeaders, httpStatus);</span>
+<span class="nc" id="L62">        LOGGER.info(&quot;ResponseEntity의 내용: &quot; + re);</span>
+<span class="nc" id="L63">        return re;  // 클라이언트에 에러 정보 반환</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

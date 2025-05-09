@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AxisSpringException.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Axis-Spring</a> &gt; <a href="index.source.html" class="el_package">Axis.Axis_Spring.common.exception</a> &gt; <span class="el_source">AxisSpringException.java</span></div><h1>AxisSpringException.java</h1><pre class="source lang-java linenums">package Axis.Axis_Spring.common.exception;
+
+import Axis.Axis_Spring.common.Constants;
+import org.springframework.http.HttpStatus;
+
+public class AxisSpringException extends Exception{
+    private static final long serialVersionID=4463380430591151694L;
+
+    private Constants.ExceptionClass exceptionClass;
+    private HttpStatus httpStatus;
+
+    public AxisSpringException(Constants.ExceptionClass exceptionClass, HttpStatus httpStatus, String message){
+<span class="nc" id="L13">        super(exceptionClass.toString()+message);</span>
+<span class="nc" id="L14">        this.exceptionClass=exceptionClass;</span>
+<span class="nc" id="L15">        this.httpStatus=httpStatus;</span>
+<span class="nc" id="L16">    }</span>
+
+    public Constants.ExceptionClass getExceptionClass(){
+<span class="nc" id="L19">        return exceptionClass;</span>
+    }
+
+    public int getHttpStatusCode(){
+<span class="nc" id="L23">        return httpStatus.value();   //에러코드</span>
+    }
+
+    public String getHttpStatusType(){
+<span class="nc" id="L27">        return httpStatus.getReasonPhrase();  //에러메세지</span>
+    }
+
+    public HttpStatus getHttpStatus() {
+<span class="nc" id="L31">        return httpStatus;  //객체반환</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

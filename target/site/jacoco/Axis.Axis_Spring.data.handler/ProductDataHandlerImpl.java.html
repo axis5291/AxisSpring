@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductDataHandlerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Axis-Spring</a> &gt; <a href="index.source.html" class="el_package">Axis.Axis_Spring.data.handler</a> &gt; <span class="el_source">ProductDataHandlerImpl.java</span></div><h1>ProductDataHandlerImpl.java</h1><pre class="source lang-java linenums">package Axis.Axis_Spring.data.handler;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import Axis.Axis_Spring.data.dao.ProductDao;
+import Axis.Axis_Spring.data.entity.ProductEntity;
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
+public class ProductDataHandlerImpl implements ProductDataHandler {
+
+    private final ProductDao productDao;
+    @Autowired
+<span class="fc" id="L18">    public ProductDataHandlerImpl(ProductDao productDao){</span>
+<span class="fc" id="L19">        this.productDao=productDao;</span>
+<span class="fc" id="L20">    }</span>
+
+    @Override  //DB에서 엔티티를 불러오는 단계
+    public ProductEntity getProductEntity(String productId) {
+<span class="nc" id="L24">       return productDao.getProduct((productId));</span>
+    }
+
+    @Override  //DB에서 모든 엔티티를 불러오는 단계
+    public List&lt;ProductEntity&gt; getAllProductEntity(){
+<span class="nc" id="L29">        return productDao.getAllProduct();</span>
+    }
+
+    @Override
+    public ProductEntity deleteProductEntity(String productId) {
+<span class="nc" id="L34">        return productDao.deleteProduct(productId);</span>
+    }
+
+    @Override  //DB에 저장하는 작업
+    public ProductEntity saveProductEntity(ProductEntity productEntity) {
+<span class="nc" id="L39">              return  productDao.saveProduct(productEntity);</span>
+     }
+   
+}
+
+// @Transactional이 클래스에 붙어 있기 때문에, 이 클래스의 모든 public 메서드는 트랜잭션 범위 안에서 실행
+// 🔧 구체적인 역할
+// 트랜잭션 시작
+// ProductDataHandlerImpl의 메서드가 호출되면 자동으로 트랜잭션이 시작됩니다.
+
+// 정상 실행 시 커밋
+// 메서드가 예외 없이 잘 끝나면 자동으로 DB에 커밋됩니다.
+
+// 예외 발생 시 롤백
+// 메서드 실행 중 RuntimeException이나 Error가 발생하면 자동으로 롤백됩니다.
+
+
+
+// @Override  //DB에 저장하는 작업
+// public ProductEntity saveProductEntity(String productId, String productName, int productPrice, int productStock) {
+//     ProductEntity productEntity =new ProductEntity(productId, productName, productPrice, productStock);
+//    return  productDao.saveProduct(productEntity);
+//  }
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

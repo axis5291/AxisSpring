@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AxisSpringExceptionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Axis-Spring</a> &gt; <a href="index.source.html" class="el_package">Axis.Axis_Spring.common.exception</a> &gt; <span class="el_source">AxisSpringExceptionHandler.java</span></div><h1>AxisSpringExceptionHandler.java</h1><pre class="source lang-java linenums">package Axis.Axis_Spring.common.exception;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+//***@RestControllerAdvice:전역예외처리 어노테이션(지역설정이 더 우선순위에 있다.)
+// @Controller, @RestController 클래스에서만 발생한 예외만 처리
+@RestControllerAdvice 
+<span class="fc" id="L17">public class AxisSpringExceptionHandler {</span>
+<span class="fc" id="L18">    private final Logger LOGGER = LoggerFactory.getLogger(AxisSpringExceptionHandler.class);</span>
+
+    @ExceptionHandler(value = Exception.class)  //@ExceptionHandler(value = Exception.class) Exception클래스  이하의 하위 클래스에서 발생한 예외라면 이 메서드에서 처리한다.&quot;
+    public ResponseEntity&lt;Map&lt;String, String&gt;&gt; ExceptionHandler(Exception e){
+<span class="nc" id="L22">        HttpHeaders responseHeadres =new HttpHeaders();</span>
+<span class="nc" id="L23">        HttpStatus httpStatus=HttpStatus.BAD_REQUEST;</span>
+
+<span class="nc" id="L25">        LOGGER.info(&quot;exception폴더 내에 AxisSpringExceptionHandler 클래스에서 ******** 전역 예외처리 ********* &quot;);   //하단 콘솔창에서 뭐가 들어오는지 보자</span>
+<span class="nc" id="L26">        LOGGER.info(&quot;e.getLocalizedMessage()=&quot;+e.getLocalizedMessage());          </span>
+       
+<span class="nc" id="L28">        Map&lt;String, String&gt; map=new HashMap&lt;&gt;();</span>
+<span class="nc" id="L29">        map.put(&quot;Error Type:&quot;, httpStatus.getReasonPhrase());</span>
+<span class="nc" id="L30">        map.put(&quot;Code&quot;, &quot;400&quot;);</span>
+<span class="nc" id="L31">        map.put(&quot;Message&quot;, &quot;에러발생&quot;);</span>
+
+<span class="nc" id="L33">        return new ResponseEntity&lt;&gt;(map, responseHeadres, httpStatus);</span>
+    }
+
+    @ExceptionHandler(value = AxisSpringException.class)
+    public ResponseEntity&lt;Map&lt;String, String&gt;&gt; ExceptionHandler(AxisSpringException e){
+<span class="nc" id="L38">        HttpHeaders responseHeadres =new HttpHeaders();</span>
+
+<span class="nc" id="L40">        Map&lt;String, String&gt; map=new HashMap&lt;&gt;();</span>
+<span class="nc" id="L41">        map.put(&quot;Error Type:&quot;, e.getHttpStatusType());</span>
+<span class="nc" id="L42">        map.put(&quot;Code&quot;, Integer.toString(e.getHttpStatusCode()));  //Map&lt;String, String&gt;이고  e.getHttpStatusCode()반환이 int형이므로 String형으로 변환</span>
+<span class="nc" id="L43">        map.put(&quot;Message&quot;, e.getMessage());</span>
+
+<span class="nc" id="L45">        return new ResponseEntity&lt;&gt;(map, responseHeadres, e.getHttpStatus());</span>
+    }
+
+}
+
+// @ExceptionHandler는 &quot;이 메서드는 특정 예외를 처리하는 용도입니다&quot; 라고 Spring에 알려주는 어노테이션입니다.
+// value 또는 메서드 파라미터를 통해 어떤 예외를 처리할지를 명시합니다.
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
